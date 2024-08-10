@@ -1,4 +1,4 @@
-import { hashPassword } from "../helpers/authHelper.js";
+import { comparePassword,hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
 import JWT from 'jsonwebtoken';
 
@@ -100,13 +100,20 @@ export const loginController = async(req,res) =>{
     });
   } catch (error) {
     console.log(error);
-    req.status(500).send({
-      success:false,
-      message:'Error in Login',
+    res.status(500).send({
+      success: false,
+      message: "Error in login",
       error,
     });
-    
   }
 };
+// export const testController = (req,res) => {
+//   try{
+//     res.send("Protected Routes");
+//   } catch (error) {
+//     console.log(error);
+//     res.send({error});
+//   }
+// };
 
 
